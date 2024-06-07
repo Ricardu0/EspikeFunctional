@@ -82,7 +82,7 @@ export default {
   },
   data() {
     return {
-      googleMapsApiKey: 'AIzaSyBwExpWzW_Lf7eCaBn7y-xRBA8DGXqfWjw',
+      googleMapsApiKey: '',
       points: [],
       showAlertForm: false,
       showOccurrenceForm: false,
