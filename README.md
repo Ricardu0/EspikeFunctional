@@ -143,4 +143,6 @@ npm run dev
 ```
 para rodar o Frontend na porta localhost:5173.
 
+Para uma melhor experiência visual, redimensione a janela para o formato Mobile na vertical.
+
 Se tudo estiver correto, você terá a aplicação completa rodando em seu sistema! Navegue entre as funções utilizando o Frontend.
