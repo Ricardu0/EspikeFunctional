@@ -83,7 +83,7 @@ Feito isso, você terá o Backend rodando e poderá seguir para o próximo passo
 
 ### Passo 3: Configurando o Frontend:
 
-A nossa aplicação utiliza o Vue.js para o Frontend, por isso, você deve ter o Vue.js instalado na sua máquina seguindo os passos do link abaixo:
+A nossa aplicação utiliza o Vue.js para o Frontend, por isso, você deve ter o Vue.js com npm instalado na sua máquina seguindo os passos do link abaixo:
 
 [    Vue.js Quick Start Guide
 ](https://vuejs.org/guide/quick-start.html)
