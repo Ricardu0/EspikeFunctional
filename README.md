@@ -26,7 +26,7 @@ Depois de clonado, navegue até a pasta do projeto:
 
 ```
 bash
-cd <caminho_da_sua_máquina>/E-spike-main/Docker/PostgreSQL
+cd <caminho_da_sua_máquina>/E-spike/Docker/PostgreSQL
 ```
 
 Dentro da pasta está o arquivo docker-compose.yml, utilize o comando:
@@ -56,7 +56,7 @@ mkdir /backup
 Depois, saia do terminal do container e copie o arquivo espike.sql dentro da pasta Docker/PostgreSQL para dentro do container com o comando:
 ```
 bash
-docker cp <caminho_da_sua_máquina>/E-spike-main/Docker/PostgreSQL/espike.sql <nome_do_container>:/backup
+docker cp <caminho_da_sua_máquina>/E-spike/Docker/PostgreSQL/espike.sql <nome_do_container>:/backup
 ```
 Feito isso, entre novamente no terminal do container e digite o seguinte comando para restaurar todas as tabelas e configurações do nosso banco de dados PostgreSQL:
 ```
@@ -69,7 +69,7 @@ Feito isso, você tem o Banco de dados rodando no container do Docker na porta l
 Certifique-se de que o Java está instalado em seu sistema. Nossa aplicação utiliza o Java 21. Depois, abra a pasta da aplicação no terminal utilizando o comando:
 ```
 bash
-cd <caminho_da_sua_máquina>/E-spike-main/Backend/target
+cd <caminho_da_sua_máquina>/E-spike/Backend/target
 ```
 Depois, digite:
 ```
@@ -77,7 +77,7 @@ bash
 java -jar espike-0.0.1-SNAPSHOT.jar
 ```
 para iniciar a aplicação com o Java Spring direto do terminal.
-Caso prefira, você também pode iniciar o Backend utilizando uma IDE e executando direto no código fonte dentro da pasta E-spike-main/Backend.
+Caso prefira, você também pode iniciar o Backend utilizando uma IDE e executando direto no código fonte dentro da pasta E-spike/Backend.
 
 Feito isso, você terá o Backend rodando e poderá seguir para o próximo passo.
 
@@ -113,7 +113,7 @@ com as seguintes extensões:
     Distance Matrix
     Roads
 
-Quando gerar a sua chave API do Google Maps, navegue até a página do projeto E-spike-main/Frontend/src/views e abra o arquivo MapView.vue com um editor de texto. Na linha 120, substitua YOUR_API_KEY pela sua chave gerada:
+Quando gerar a sua chave API do Google Maps, navegue até a página do projeto E-spike/Frontend/src/views e abra o arquivo MapView.vue com um editor de texto. Na linha 120, substitua YOUR_API_KEY pela sua chave gerada:
 ```
 javascript
 googleMapsApiKey: "YOUR_API_KEY"
@@ -122,7 +122,7 @@ googleMapsApiKey: "YOUR_API_KEY"
 Depois disso, abra o terminal na pasta da aplicação utilizando:
 ```
 bash
-cd <caminho_da_sua_máquina>/E-spike-main/Frontend
+cd <caminho_da_sua_máquina>/E-spike/Frontend
 ```
 Com o Vue.js e o npm já configurados em sua máquina, digite o comando:
 ```
@@ -134,7 +134,7 @@ Caso ele não funcione, tente com:
 bash
 npm install --force
 ```
-para instalar todas as dependências do projeto Vue. Se não funcionar, verifique se a pasta node_modules está presente dentro da pasta E-spike-main/Frontend, apague-a e tente novamente.
+para instalar todas as dependências do projeto Vue. Se não funcionar, verifique se a pasta node_modules está presente dentro da pasta E-spike/Frontend, apague-a e tente novamente.
 
 Feito isso, utilize:
 ```
