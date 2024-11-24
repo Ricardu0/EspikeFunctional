@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_alerts")
-public class Alert {
+public class AlertRepository {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

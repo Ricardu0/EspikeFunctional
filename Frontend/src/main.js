@@ -5,6 +5,8 @@ import router from './router'
 import 'tailwindcss/tailwind.css';
 import axios from 'axios';
 
+
+
 router.beforeEach((to, from, next) => {
   const publicPages = ['/', '/Login', '/Cadastro'];
   const authRequired = to.matched.some(record => record.meta.requiresAuth);

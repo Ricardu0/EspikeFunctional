@@ -8,8 +8,8 @@
 /home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/dto/LoginRequestDTO.java
 /home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/dto/RegisterRequestDTO.java
 /home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/dto/ResponseDTO.java
-/home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/model/Alert.java
-/home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/model/Marker.java
+/home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/model/AlertRepository.java
+/home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/model/MarkerRepository.java
 /home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/model/Occurrence.java
 /home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/model/User.java
 /home/kell/IdeaProjects/projetoespike/E-spike/Back/src/main/java/br/com/project/espike/repository/AlertRepository.java

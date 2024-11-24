@@ -1,20 +1,23 @@
 <template>
   <transition name="fade">
     <div class="home">
-      <div flex="true" align="Center">
-        <h1 class="text-3xl lg:text-4xl border-l-blue-500" active>Seja bem-vindo</h1>
-        <br>
-        <h1 class="text-3xl lg:text-4xl border-l-blue-500" active>ao E-Spike!</h1>
-        <br>
-        <BotaoRedondo rotaBtn="/Cadastro">Cadastre-se</BotaoRedondo>
-        <br>
-        <br>
-        <BotaoRedondo rotaBtn="/Login"> ‎ ‎ ‎ ‎ ‎ Login ‎ ‎ ‎ ‎  ‎  </BotaoRedondo>
-        <br>
-        <br>
-        <br>
+      <div class="logo-container">
+        <!-- Coluna da imagem logo -->
+        <div class="logo-column">
+          <img src="../components/imgs/logo1.jpg" alt="Logo E-Spike" class="logo-img" />
+        </div>
+
+        <!-- Coluna do texto e botões -->
+        <div class="text-column">
+          <h2 class="text-3xl lg:text-4xl">Seja bem-vindo</h2>
+          <h2 class="text-3xl lg:text-4xl">ao E-Spike!</h2>
+          <br />
+          <BotaoRedondo rotaBtn="/Cadastro">Cadastre-se</BotaoRedondo>
+          <br>
+          <br>
+          <BotaoRedondo rotaBtn="/Login">Login</BotaoRedondo>
+        </div>
       </div>
-      <br>
       <footer>
         <h4>© 2024 - Todos os direitos reservados</h4>
       </footer>
@@ -35,28 +38,65 @@ export default {
 
 <style scoped>
 .home {
-  text-align: center;
+  text-align: justify-all;
   padding: 20px;
   background-color: rgb(255, 255, 255);
-  opacity: 0; /* Inicia com a div invisível */
-  animation: fadeIn 0.5s ease-in forwards; /* Animação para tornar a div visível */
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px; /* Espaço entre a logo e o texto/botões */
+  flex-direction: row; /* Lado a lado no desktop */
+}
+
+.logo-column {
+  flex: 1;
+}
+
+.text-column {
+  flex: 2;
+  text-align: left; /* Alinha o conteúdo à esquerda */
+}
+
+.logo-img {
+  max-width: 500px; /* Tamanho máximo da logo */
+  height: auto;
 }
 
 @keyframes fadeIn {
   to {
-    opacity: 1; /* Faz a div se tornar completamente visível ao final da animação */
+    opacity: 1;
   }
 }
 
-.body {
-  background-color: white;
+footer {
+  margin-top: 10px;
 }
 
-.about h1 {
-  color: #000000;
-  font-size: 36px;
-  margin-bottom: 20px;
-  text-align: center;
-  width: 100%;
+/* Media query para telas menores */
+@media (max-width: 767px) {
+  .logo-container {
+    flex-direction: column; /* Empilha a logo em cima e os botões embaixo no mobile */
+  }
+
+  .text-column {
+    text-align: center; /* Centraliza o texto e os botões em telas menores */
+  }
+
+  .logo-img {
+    max-width: 290px; /* Diminui o tamanho da logo em telas menores */
+  }
+
+  .text-3xl {
+    font-size: 24px; /* Ajuste de tamanho para textos menores */
+  }
+
+  .lg\:text-4xl {
+    font-size: 32px;
+  }
 }
 </style>

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_markers")
-public class Marker {
+public class MarkerRepository {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

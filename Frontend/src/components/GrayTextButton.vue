@@ -20,24 +20,30 @@ export default {
   methods: {
     navigate() {
       // Navegar para a rota especificada
-      this.$router.push(this.rotaBtn);},
-},
+      this.$router.push(this.rotaBtn);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .botao-redondo {
-  background-color: #adadad;
+  background-color: #787878;
   color: rgb(255, 255, 255);
   border: none;
-  padding: 20px 30px;
-  border-radius: 100px; /* Agora o botão é arredondado! */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px; /* Largura fixa */
+  height: 80px; /* Altura fixa */
+  border-radius: 75px; /* Raio para manter o botão circular */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3vw 4vh;
 }
 .botao-redondo:hover {
   background-color: #3f535a; /* Cor de fundo ao passar o mouse */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais escura */
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; /* Sombra mais escura */
 }
 .botao-redondo {
   transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Tempo e tipo de transição */

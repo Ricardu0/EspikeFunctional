@@ -48,7 +48,7 @@ export default {
 }
 
 .custom-button:hover {
-  background-color: #ff7300;
+  background-color: #c80000;
 }
 
 .button-icon {

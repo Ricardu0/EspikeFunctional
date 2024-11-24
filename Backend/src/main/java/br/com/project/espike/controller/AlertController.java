@@ -1,6 +1,6 @@
 package br.com.project.espike.controller;
 
-import br.com.project.espike.model.Alert;
+import br.com.project.espike.model.AlertRepository;
 import br.com.project.espike.service.AlertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +16,12 @@ public class AlertController {
     private AlertService alertService;
 
     @PostMapping
-    public ResponseEntity<Alert> createAlert(@RequestBody Alert alert) {
+    public ResponseEntity<AlertRepository> createAlert(@RequestBody AlertRepository alert) {
         return ResponseEntity.ok(alertService.createAlert(alert));
     }
 
     @GetMapping
-    public ResponseEntity<List<Alert>> getAllAlerts() {
+    public ResponseEntity<List<AlertRepository>> getAllAlerts() {
         return ResponseEntity.ok(alertService.getAllAlerts());
     }
 }

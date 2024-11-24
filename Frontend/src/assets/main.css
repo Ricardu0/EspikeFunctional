@@ -4,6 +4,9 @@
 @import 'tailwindcss/utilities';
 @import './custom-fonts.css';
 
+@import 'primeicons/primeicons.css';
+
+
 #app {
   max-width: 1920px;
   margin: 0 auto;

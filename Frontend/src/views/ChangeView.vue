@@ -1,36 +1,36 @@
 <template>
-  <div>
-    <TextButton>Gostaria de trocar os dados?</TextButton><br> <br>
-    <h1>Coloque suas informações atualizadas! :)</h1> <br>
-    <BotaoInput v-model="user.name" input-placeholder="Nome"></BotaoInput> <br>
-    <BotaoInput v-model="user.email" input-placeholder="Email" disabled></BotaoInput> <br>
-    <BotaoInput v-model="user.phone" input-placeholder="Telefone" v-mask="'(##) #####-####'"></BotaoInput> <br>
-    <BotaoInput v-model="user.password" input-placeholder="Senha" inputType="password"></BotaoInput> <br>
-    <BotaoInput v-model="confirmPassword" input-placeholder="Confirmar Senha" inputType="password"></BotaoInput> <br>
-    <br>
-    <BotaoRedondo @click="updateUser">Trocar</BotaoRedondo>
-    <br>
-    <br>
-    <BotaoRedondo @click="confirmDelete">Remover Conta</BotaoRedondo>
-    <br>
-    <br>
-    <BackButton></BackButton>
+  <div class="about">
+    <h1>Alterar Informações</h1>
+    <h2>Lembre-se de colocar o email quando para fazer alteracoes na sua conta!</h2>
+    <br />
+    <BotaoInput v-model="user.name" input-placeholder="Nome" /> <br />
+    <BotaoInput v-model="user.email" input-placeholder="Email" disabled /> <br />
+    <BotaoInput v-model="user.phone" input-placeholder="Telefone" v-mask="'(##) #####-####'" /> <br />
+    <BotaoInput v-model="user.password" input-placeholder="Senha" inputType="password" /> <br />
+    <BotaoInput v-model="confirmPassword" input-placeholder="Confirmar Senha" inputType="password" /> <br />
+    <BotaoRedondo @click="updateUser" class="m-2">Trocar</BotaoRedondo>
+    <br />
+    <BotaoRedondo @click="confirmDelete" class="m-2">Deletar</BotaoRedondo>
+    <br />
   </div>
+  <back-button></back-button>
+  <br>
 </template>
 
 <script>
+
 import BackButton from "@/components/BackButton.vue";
 import BotaoInput from "@/components/BotaoInput.vue";
 import BotaoRedondo from "@/components/BotaoRedondo.vue";
-import TextButton from "@/components/TextButton.vue";
-import axios from "axios";
-import { mask } from 'vue-the-mask';
+import { mask } from "vue-the-mask";
+import userService from "@/services/userService"; // Importa o serviço de usuário configurado
 
 export default {
-  components: { TextButton, BotaoInput, BotaoRedondo, BackButton },
+  components: { BotaoInput, BotaoRedondo, BackButton },
   data() {
     return {
       user: {
+        _id: "",
         name: "",
         email: "",
         phone: "",
@@ -40,78 +40,93 @@ export default {
     };
   },
   directives: { mask },
-  mounted() {
-    this.fetchUserData();
+  async mounted() {
+    await this.fetchUserData();
   },
   methods: {
+    // Busca dados do usuário no backend
     async fetchUserData() {
-      const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:8080/api/users/me", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        this.user = {
-          ...response.data,
-          password: ""
-        };
+        const userData = await userService.getUser();
+        this.user = userData;
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        if (error.response && error.response.status === 401) {
+          alert("Sua sessão expirou. Faça login novamente.");
+          this.$router.push("/login");
+        } else {
+          console.error("Erro ao buscar dados do usuário:", error);
+        }
       }
     },
-    async updateUser() {
-      if (this.user.password !== this.confirmPassword) {
-        alert("As senhas não coincidem.");
-        return;
-      }
-      const token = localStorage.getItem("token");
-      try {
-        await axios.put("http://localhost:8080/api/users/me", this.user, {
-          headers: {
-            Authorization: `Bearer ${token}`
+
+    // Atualiza dados do usuário
+      async updateUser() {
+        try {
+          const userData = { ...this.user };
+
+          // Certifique-se de que o _id não está sendo enviado
+          if (!userData._id) {
+            delete userData._id;
           }
-        });
-        alert("Dados atualizados com sucesso!");
-      } catch (error) {
-        console.error("Error updating user data:", error);
-        alert("Erro ao atualizar os dados.");
-      }
-    },
-    confirmDelete() {
-      if (confirm("Tem certeza de que deseja remover sua conta?")) {
-        this.deleteUser();
-      }
-    },
-    async deleteUser() {
-      const token = localStorage.getItem("token");
+
+          console.log('Dados para atualização:', userData);
+          const response = await userService.updateUser(this.user.email, userData);
+          console.log('Resposta do servidor após atualização:', response);
+          alert("Dados atualizados com sucesso!");
+          this.$router.push("/");
+        } catch (error) {
+          console.error('Erro ao atualizar usuário:', error);
+          alert("Erro ao atualizar usuário: " + (error.response?.data?.message || error.message));
+        }
+      },
+
+    // Confirmação e remoção do usuário
+    async confirmDelete() {
       try {
-        await axios.delete("http://localhost:8080/api/users/me", {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        alert("Conta removida com sucesso!");
-        localStorage.removeItem("token");
-        this.$router.push("/login");
+        if (!this.user?.email) {
+          throw new Error('Email do usuário não encontrado');
+        }
+
+        console.log('Iniciando processo de deleção para:', this.user.email);
+        await userService.deleteUserByEmail(this.user.email);
+        alert('Conta removida com sucesso!');
+        // Redirecionar para logout ou página inicial após deletar
+        this.$router.push('/login');
       } catch (error) {
-        console.error("Error deleting user:", error);
-        alert("Erro ao remover a conta.");
+        console.error('Erro ao remover conta:', error);
+        alert('Erro ao remover conta: ' + (error.response?.data?.message || error.message));
       }
     }
   }
 };
+
+
 </script>
 
 <style scoped>
 div {
-  opacity: 0; /* Inicia com a div invisível */
-  animation: fadeIn 0.5s ease-in forwards; /* Animação para tornar a div visível */
+  opacity: 1;
+  animation: fadeIn 0.6s;
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1; /* Faz a div se tornar completamente visível ao final da animação */
+  0% {
+    opacity: 0.5;
   }
+  100%{
+    opacity: 1;
+  }
+}
+
+@media (max-width:  640px) {
+  .about {
+    padding-top: 5rem;
+    align-items: center ;
+  }
+}
+h1 {
+  font-size: 25px;
+  text-align: center;
+  color: #0095c5;
 }
 </style>

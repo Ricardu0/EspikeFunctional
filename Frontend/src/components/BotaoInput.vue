@@ -7,6 +7,7 @@
       v-model="inputValue"
       @input="$emit('update:modelValue', inputValue)"
     />
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -24,6 +25,10 @@ export default {
     inputType: {
       type: String,
       default: 'text'
+    },
+    errorMessage: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -41,11 +46,12 @@ export default {
 
 <style scoped>
 .rounded-input {
-  background-color: rgb(228, 228, 228);
+  background-color: rgb(223, 223, 223);
   width: 100%;
   padding: 10px;
-  border: 1px solid #ffffff;
+  border: 0px solid #ffffff;
   border-radius: 80px;
   font-size: 20px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
 }
 </style>

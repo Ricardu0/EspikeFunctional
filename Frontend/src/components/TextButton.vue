@@ -19,16 +19,20 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .botao-redondo {
   background-color: #00bbff;
-  color: rgb(255, 255, 255);
+  color: white;
   border: none;
-  padding: 20px 30px;
-  border-radius: 100px; /* Agora o botão é arredondado! */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 80px;
+  border-radius: 40px; /* Para garantir que o botão seja arredondado corretamente */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Remover padding extra para centralizar o texto corretamente */
 }
 .botao-redondo:hover {
   background-color: #00b5f6; /* Cor de fundo ao passar o mouse */

@@ -1,7 +1,7 @@
 package br.com.project.espike.controller;
 
 
-import br.com.project.espike.model.Marker;
+import br.com.project.espike.model.MarkerRepository;
 import br.com.project.espike.service.MarkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ public class MarkerController {
     private MarkerService markerService;
 
     @GetMapping
-    public ResponseEntity<List<Marker>> getAllMarkers() {
+    public ResponseEntity<List<MarkerRepository>> getAllMarkers() {
         return ResponseEntity.ok(markerService.getAllMarkers());
     }
 
 
     @PostMapping
-    public ResponseEntity<List<Marker>> saveMarkers(@RequestBody List<Marker> markers) {
+    public ResponseEntity<List<MarkerRepository>> saveMarkers(@RequestBody List<MarkerRepository> markers) {
         return ResponseEntity.ok(markerService.saveMarkers(markers));
     }
 }

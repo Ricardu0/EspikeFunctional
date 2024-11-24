@@ -35,18 +35,18 @@ export default {
 
 <style scoped>
 .botao-redondo {
-  background-color: #ff9900;
+  background-color: #f66700;
   color: rgb(255, 255, 255);
   border: none;
   padding: 20px 30px;
   border-radius: 100px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 15px 16px rgba(0, 0, 0, 0.1);
   font-size: 20px;
   cursor: pointer;
 }
 .botao-redondo:hover {
-  background-color: #ff6600;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ff2f00;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 .botao-redondo {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;

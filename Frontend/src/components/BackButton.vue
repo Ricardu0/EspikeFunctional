@@ -28,6 +28,7 @@ export default {
   cursor: pointer;
   animation: fadeIn 1s ease-in-out;
   padding-right: 12px; /* Remove extra right padding */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .button-container {
@@ -46,6 +47,7 @@ export default {
 /* Hover and focus styles (optional) */
 .custom-button:hover {
   background-color: #ffffff; /* Darker green on hover */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .custom-button:focus {

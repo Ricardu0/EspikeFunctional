@@ -1,10 +1,8 @@
 <template>
 <div align="center">
-    <br>
     <router-link to="/"></router-link>
     <router-view/>
       </div>
-    <br><br>
 </template>
 
 <script>
@@ -14,7 +12,6 @@ export default {
 </script>
 
 <style>
-
 body {
   background-color: #ffffff;
 }

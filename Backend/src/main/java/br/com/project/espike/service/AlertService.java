@@ -1,6 +1,6 @@
 package br.com.project.espike.service;
 
-import br.com.project.espike.model.Alert;
+import br.com.project.espike.model.AlertRepository;
 import br.com.project.espike.repository.AlertRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,11 @@ public class AlertService {
     @Autowired
     private AlertRepository alertRepository;
 
-    public Alert createAlert(Alert alert) {
+    public AlertRepository createAlert(AlertRepository alert) {
         return alertRepository.save(alert);
     }
 
-    public List<Alert> getAllAlerts() {
+    public List<AlertRepository> getAllAlerts() {
         return alertRepository.findAll();
     }
 }

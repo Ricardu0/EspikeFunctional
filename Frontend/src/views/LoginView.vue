@@ -1,26 +1,43 @@
 <template>
   <transition name="fade">
     <div class="login">
-      <div flex="true" align="Center">
-        <div align="center">
-          <br>
+      <div class="flex">
+        <div class="login-container">
           <h1 class="istok-web-regular">Seja bem vindo de volta!</h1>
+          <p> Coloque seu email e senha abaixo</p>
           <br>
-          <BotaoInput v-model="email" inputPlaceholder="     Email"></BotaoInput>
+          <form @submit.prevent="login">
+            <BotaoInput
+                v-model="email"
+                inputPlaceholder="Email"
+                :error="errors.email">
+            </BotaoInput>
+
+            <BotaoInput
+                v-model="password"
+                inputPlaceholder="Senha"
+                inputType="password"
+                :error="errors.password">
+            </BotaoInput>
+
+            <div v-if="errorMessage" class="error-message">
+              {{ errorMessage }}
+            </div>
+            <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+            <BotaoRedondo
+                type="submit"
+                :disabled="isLoading">
+              {{ isLoading ? 'Entrando...' : 'Entrar' }}
+            </BotaoRedondo>
+          </form>
           <br>
-          <BotaoInput v-model="password" inputPlaceholder="     Senha" inputType="password"></BotaoInput>
-          <br>
-          <br>
-          <BotaoRedondo @click="login"> ‎ Entrar ‎ </BotaoRedondo>
+          <back-button></back-button>
         </div>
-        <br>
-        <br>
-        <back-button></back-button>
-        <br>
-        <footer>
-          <h4>© 2024 - Todos os direitos reservados</h4>
-        </footer>
       </div>
+
+      <footer>
+        <h4>© 2024 - Todos os direitos reservados</h4>
+      </footer>
     </div>
   </transition>
 </template>
@@ -29,41 +46,62 @@
 import BackButton from "@/components/BackButton.vue";
 import BotaoInput from '@/components/BotaoInput.vue';
 import BotaoRedondo from '@/components/BotaoRedondo.vue';
-import TextoNormal from '@/components/NormalText.vue';
+import {authService} from "@/services/ApiService.js";
 
 export default {
   name: 'LoginView',
   components: {
     BackButton,
-    TextoNormal,
     BotaoInput,
     BotaoRedondo,
   },
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      errorMessage: null,
+      isLoading: false,
+      errors: {
+        email: '',
+        password: ''
+      }
     };
   },
   methods: {
+    validateForm() {
+      this.errors = {
+        email: '',
+        password: ''
+      };
+
+      if (!this.email) this.errors.email = 'E-mail é obrigatório';
+      if (!this.password) this.errors.password = 'Senha é obrigatória';
+
+      return !this.errors.email && !this.errors.password;
+    },
     async login() {
-      if (!this.email || !this.password) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-      }
-      const response = await fetch('http://localhost:8080/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: this.email, password: this.password }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('token', data.token);
+      if (!this.validateForm()) return;
+
+      this.isLoading = true;
+      this.errorMessage = '';
+
+      try {
+        const response = await authService.login({
+          email: this.email,
+          password: this.password
+        });
+
+        const {token} = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', response.data.userId);
+        console.log('Resposta do login:', response.data);
+
+        // Redirecionar para a página do mapa
         this.$router.push('/Mapa');
-      } else {
-        alert('Login failed.');
+      } catch (error) {
+        this.errorMessage = error.response?.data?.message || 'Erro ao fazer login. Verifique suas credenciais. Erro definido: ' + error;
+      } finally {
+        this.isLoading = false;
       }
     }
   }
@@ -72,35 +110,55 @@ export default {
 
 <style scoped>
 .login {
-  text-align: center;
-  padding: 20px;
-  background-color: rgb(255, 255, 255);
-  opacity: 0; /* Inicia com a div invisível */
-  animation: fadeIn 0.5s ease-in forwards; /* Animação para tornar a div visível */
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1; /* Faz a div se tornar completamente visível ao final da animação */
-  }
-}
-
-.body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: white;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 
-.about h1 {
+.flex {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.error-message {
+  color: red;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+h1 {
   color: #000000;
   font-size: 36px;
   margin-bottom: 20px;
   text-align: center;
-  width: 100%;
 }
 
-.flex {
+footer {
+  padding: 20px;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+form {
   display: flex;
-  flex-direction: column; /* Alinhar verticalmente */
-  justify-content: center; /* Centralizar na vertical */
-  align-items: center; /* Centralizar na horizontal */
+  flex-direction: column;
+  gap: 15px;
 }
 </style>
