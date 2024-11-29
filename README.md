@@ -1,61 +1,99 @@
-Seja Bem-vindo ao Projeto E-spike!
-Passo 1: Configurando o Banco de Dados
-O projeto utiliza MongoDB, o que facilita a configuração inicial. Siga os passos abaixo:
+# 🚀 Seja Bem-vindo ao Projeto E-spike!
 
-Instale o MongoDB Compass através do link oficial:
-MongoDB Compass
+Este guia irá orientá-lo na configuração e execução do projeto **E-spike**. Siga os passos abaixo para preparar o ambiente, iniciar os serviços e explorar todas as funcionalidades.
 
-Após instalar, inicialize o MongoDB Compass.
+---
 
-Crie uma nova conexão com o endereço padrão:
-mongodb://localhost:27017
+## 🗃️ Passo 1: Configurando o Banco de Dados
 
-Certifique-se de que a conexão foi criada com sucesso. Mantenha o MongoDB Compass aberto para verificações posteriores.
+A aplicação utiliza **MongoDB**, simplificando os processos de configuração. Siga os passos abaixo:
 
-Passo 2: Configurando Dependências
-Após baixar o projeto, acesse a pasta raiz do projeto utilizando o terminal:
+1. **Instalar o MongoDB Compass**
+  - Baixe o MongoDB Compass no site oficial:  
+    ```
+    https://www.mongodb.com/try/download/compass
+    ```
+  - Siga as instruções de instalação do seu sistema operacional.
 
-bash
-Copiar código
-cd <caminho_da_sua_máquina>/E-spikeFunctional
-Instale as dependências necessárias para o projeto:
+2. **Configurar a Conexão**
+  - Após a instalação, inicie o MongoDB Compass.
+  - Crie uma nova conexão com o endereço padrão:  
+    ```
+    mongodb://localhost:27017
+    ```
+  - Deixe essa conexão ativa para uso no projeto.
 
-bash
-Copiar código
-npm install
-Nota: Caso enfrente problemas durante a instalação, utilize o comando com a flag --force:
+---
 
-bash
-Copiar código
-npm install --force
-Passo 3: Inicializando o Backend
-Acesse a pasta BackendJ no terminal:
+## 📦 Passo 2: Configurando Dependências
 
-bash
-Copiar código
-cd BackendJ
-Inicie o backend utilizando o seguinte comando:
+Para preparar o ambiente de desenvolvimento, siga estas etapas:
 
-bash
-Copiar código
-node --watch app.js
-Verifique o console. Se a mensagem indicar que o servidor está rodando na porta 5174, o backend foi configurado corretamente.
+1. **Acessar o Diretório do Projeto**
+  - Para acessar o projeto, use o comando abaixo.
+    ```bash
+    cd <caminho_da_sua_máquina>/E-spikeFunctional
+    ```
 
-Dica para Solução de Erros
-Abra o MongoDB Compass e confirme se a database "MeuBanco" foi criada.
-Caso ela não tenha sido criada automaticamente, você pode criá-la manualmente no MongoDB Compass e testar novamente a aplicação.
-Passo 4: Inicializando o Frontend
-Abra um novo terminal e acesse a pasta Frontend:
+2. **Instalar Dependências**
+  Instale as dependências necessárias para o projeto:
+    ```bash
+    npm install
+    ```
+  Caso encontre problemas durante a instalação, utilize a opção de força:
+    ```bash
+    npm install --force
+    ```
 
-bash
-Copiar código
-cd Frontend
-Inicie o servidor de desenvolvimento do frontend com o comando:
+---
 
-bash
-Copiar código
-npm run dev
-O frontend será iniciado na porta localhost:5173. Para uma melhor experiência, ajuste a janela para o formato Mobile (vertical) no navegador.
+## 🖥️ Passo 3: Inicializando o Backend
 
-Pronto! 🚀
-Se todos os passos forem seguidos corretamente, o sistema estará funcionando. Agora você pode explorar todas as funcionalidades do E-spike diretamente pelo navegador.
+Para rodar o backend da aplicação:
+
+1. **Acessar o Diretório do Backend**
+    ```bash
+    cd BackendJ
+    ```
+
+2. **Iniciar o Backend**
+    ```bash
+    node --watch app.js
+    ```
+
+3. **Verificação**
+  Se o console mostrar que o servidor está rodando na porta 5174, a configuração foi realizada com sucesso.
+
+4. **Solução de Problemas**
+  Abra o MongoDB Compass e confirme se a database "MeuBanco" foi criada.
+  Caso contrário, crie a database manualmente e reinicie o backend.
+
+---
+
+## 🌐 Passo 4: Inicializando o Frontend
+
+Para rodar o frontend da aplicação:
+
+1. **Acessar o Diretório do Frontend**
+    ```bash
+    cd Frontend
+    ```
+
+2. **Iniciar o Frontend**
+    ```bash
+    npm run dev
+    ```
+
+3. **Configuração e Visualização**
+  O frontend será executado na porta `localhost:5173`.
+  Para uma experiência ideal, ajuste a janela do navegador para o formato Mobile (vertical).
+
+---
+
+## ✅ Finalização
+
+Após seguir os passos acima, o projeto estará configurado e rodando. Você pode explorar todas as funcionalidades do E-spike diretamente pelo navegador.
+
+Se precisar de ajuda ou encontrar problemas, fique à vontade para entrar em contato ou abrir uma Issue no repositório.
+
+Obrigado por ler tudo até o final! 
